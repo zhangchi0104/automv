@@ -1,0 +1,19 @@
+{
+    "rules": [
+        {
+            "name": "tidy", 
+            "matchType": "all", 
+            "conditions":[
+                {
+                    "type": "contains",
+                    "keywords": ["tmp", "temp", "tmp/", "temp/"]
+                }
+            ],
+            "options": { 
+                "createNewFolder": false
+            },
+            "destination": "/Users/alexzhang/.Trash"
+        }
+    ],
+    "defaultRule": "tidy"
+}
