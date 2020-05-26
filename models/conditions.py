@@ -52,3 +52,19 @@ class ContainsKeywordCondition(Condition):
             if keyword in file_name:
                 return True
         return False
+
+class FileExtensionCondition(Condition):
+    def __init__(self, extensions: list):
+        super().__init__('extension')
+        self._extensions = extensions
+
+    def check(self, file_name: str) -> bool: 
+        if '.' not in file_name:
+            return False
+        elif file_name[0] == '.':
+            return False
+        
+        for ext in self._extensions:
+            if file_name.endswith(ext):
+                return True
+            return False
