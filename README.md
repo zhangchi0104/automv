@@ -18,11 +18,12 @@ python3 main.py file
 ```
 
 ## TODO
-- [] add priorties to rule
-- [] be able to specify a rule
-- [] be able to nested rules
-- [] be able to process multiple files
-- [] add more rules and matchers 
+-[ ] add priorties to rule
+-[ ] be able to specify a rule
+-[ ] be able to nested rules
+-[ ] be able to process multiple files
+-[ ] add more conditions and matchers 
+    -[X] added `any` matcher and `extension` condition
 
 ## Changelog
 ### v0.0.1 
