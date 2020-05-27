@@ -53,7 +53,7 @@ class AnyConditionMatcher(Matcher):
     
     def match(self, file_name: str) -> bool:
         for condition in self.conditions:
-            if not condition.check(file_name):
+            if condition.check(file_name):
                 return True
             
         return False 

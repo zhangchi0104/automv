@@ -12,8 +12,19 @@
             "options": { 
                 "createNewFolder": false
             },
-            "destination": "/Users/alexzhang/.Trash"
+            "destination": "/Users/alexzhang/.Trash",
+            "priority": 0
+        }, {
+            "name": "music",
+            "matchType": "any",
+            "conditions": [
+                {
+                    "type": "extension",
+                    "extensions": ["mp3", "wav", "flac", "aac"]
+                }
+            ],
+            "destination": "/Users/alexzhang/Music/Music/Media/Automatically Add to Music.localized/",
+            "priority": 1
         }
-    ],
-    "defaultRule": "tidy"
+    ]
 }

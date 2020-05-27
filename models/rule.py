@@ -9,12 +9,12 @@ class Rule(object):
     then moves it into the destination folder
     
     Attributes:
-        name/:          the name provided in the config json file
+        name:          the name provided in the config json file
         _matcher:       matchers for underlying rules
         _destination:   where the file should be sent
 
     """
-    def __init__(self, rule_name: str, matcher: Matcher, destination: str):
+    def __init__(self, rule_name: str, matcher: Matcher, destination: str, priority: int):
         """ inits the Rule instance
         
         Args:
@@ -24,9 +24,10 @@ class Rule(object):
         """
         self._rule_name = rule_name
         self._matcher : Matcher = matcher
-        self._destination = destination
+        self._destination = destination 
+        self._priority = priority
         
-    def run(self, file_name: str):
+    def run(self, file_name: str) -> bool:
         """ run the rule
         
         it first runs the matcher to check the file name
@@ -39,7 +40,14 @@ class Rule(object):
         if self._matcher.match(file_name):
             dst = shutil.move(file_name, self._destination)
             print(f"moved {file_name} to {dst}")
+            return True
+        
+        return False
         
     @property
     def name(self):
         return self._rule_name
+
+    @property
+    def priority(self):
+        return self._priority
