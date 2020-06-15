@@ -1,30 +1,67 @@
 {
-    "rules": [
+  "rules": [
+    {
+      "name": "tidy",
+      "matchType": "any",
+      "conditions": [
         {
-            "name": "tidy", 
-            "matchType": "all", 
-            "conditions":[
-                {
-                    "type": "contains",
-                    "keywords": ["tmp", "temp", "tmp/", "temp/"]
-                }
-            ],
-            "options": { 
-                "createNewFolder": false
-            },
-            "destination": "/Users/alexzhang/.Trash",
-            "priority": 0
+          "type": "contains",
+          "keywords": ["tmp", "temp", "tmp/", "temp/"]
         }, {
-            "name": "music",
-            "matchType": "any",
-            "conditions": [
-                {
-                    "type": "extension",
-                    "extensions": ["mp3", "wav", "flac", "aac"]
-                }
-            ],
-            "destination": "/Users/alexzhang/Music/Music/Media/Automatically Add to Music.localized/",
-            "priority": 1
+          "type": "extension",
+          "extensions": ["pkg", "dmg"]
         }
-    ]
+      ],
+      "options": {
+        "createNewFolder": false
+      },
+      "destination": "/Users/alexzhang/.Trash",
+      "priority": 0
+    },
+    {
+      "name": "music",
+      "matchType": "any",
+      "conditions": [
+        {
+          "type": "extension",
+          "extensions": ["mp3", "wav", "flac", "aac"]
+        }
+      ],
+      "destination": "/Users/alexzhang/Music/Music/Media/Automatically Add to Music.localized/",
+      "priority": 1
+    },
+    {
+      "name": "INFS1602",
+      "matchType": "all",
+      "conditions": [
+        {
+          "type": "contains",
+          "keywords": ["INFS1602"]
+        },
+        {
+          "type": "extension",
+          "extensions": ["pdf"]
+        }
+      ],
+      "destination": "/Users/alexzhang/Google Drive/UNSW/yr3_s2/INFS1602/",
+      "priority": 2
+    }, 
+    {
+      "name": "lectures",
+      "matchType": "all",
+      "conditions": [
+        {
+          "type":"contains",
+          "keywords": ["fins", "comp", "infs"]
+        },
+        {
+          "type":"extension",
+          "extensions":["mp4"]
+        }
+      ],
+      "destination": "/Users/alexzhang/Movies/Lecture Recording/",
+      "priority": 2
+    
+    }
+  ]
 }

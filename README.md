@@ -29,6 +29,7 @@ python3 main.py file
 - [ ] add pytest 
 - [ ] dump rules by `pickle` for better performance
 - [ ] rewrite this project in other language
+- [ ] allow rule groups
 
 ## Changelog
 ###

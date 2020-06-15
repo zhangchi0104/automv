@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 
+
 class Condition(ABC):
     """ Abstract class for Condition, 
 
@@ -10,7 +11,8 @@ class Condition(ABC):
         type_name: indicates the type of the condition
 
     """
-    def __init__(self,type_name: str):
+
+    def __init__(self, type_name: str):
         self._type_name = type_name
 
     @abstractmethod
@@ -30,7 +32,8 @@ class Condition(ABC):
     @property
     def type_name(self) -> str:
         return self._type_name
-    
+
+
 class ContainsKeywordCondition(Condition):
     """  ContainsKeywordCondition checks if a file name contians the condition
     
@@ -42,7 +45,7 @@ class ContainsKeywordCondition(Condition):
     def __init__(self, keywords):
         """ inits ContainsKeywordCondition 
         with condition type and a list of keywords
-        """ 
+        """
         super().__init__('contains')
         self._keywords = keywords
 
@@ -53,17 +56,18 @@ class ContainsKeywordCondition(Condition):
                 return True
         return False
 
+
 class FileExtensionCondition(Condition):
     def __init__(self, extensions: list):
         super().__init__('extension')
         self._extensions = extensions
 
-    def check(self, file_name: str) -> bool: 
+    def check(self, file_name: str) -> bool:
         if '.' not in file_name:
             return False
         elif file_name[0] == '.':
             return False
-        
+
         for ext in self._extensions:
             if file_name.endswith(ext):
                 return True
