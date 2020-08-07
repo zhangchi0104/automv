@@ -1,8 +1,8 @@
-
-import json 
+import json
 from models.conditions import *
 from models.matchers import *
 from models.rule import Rule
+
 
 def load_rules(config_path: str) -> dict:
     """ load rules from json
@@ -21,10 +21,11 @@ def load_rules(config_path: str) -> dict:
 
     with open(config_path, "r") as fp:
         configs: dict = json.load(fp)
-        for rule_json in configs['rules']: 
+        for rule_json in configs['rules']:
             rule = _generate_rule(rule_json)
+                
             rules[rule.name] = rule
-       
+
     return rules
 
 
@@ -47,6 +48,7 @@ def _parse_conditions(conditions: list) -> list:
 
     return res
 
+
 def _generate_rule(rule_json: dict) -> Rule:
     """ generate rules from json
     this function first generate conditions
@@ -60,18 +62,21 @@ def _generate_rule(rule_json: dict) -> Rule:
         A Rule instance from json
         
     """
+    rule_json.setdefault('options', dict())
     switch = {
-        "all": lambda condition: AllConditionsMatcher(condition), 
+        "all": lambda condition: AllConditionsMatcher(condition),
         "any": lambda condition: AnyConditionMatcher(condition)
     }
     matcher = None
     conditions = _parse_conditions(rule_json['conditions'])
- 
+
     matcher = switch[rule_json['matchType']](conditions)
-    rule = Rule(rule_json['name'],  matcher, rule_json['destination'], rule_json["priority"])
+    
+    rule = Rule(rule_json['name'], matcher, rule_json['destination'], rule_json["priority"], rule_json['options'])
     return rule
 
-def process_file(file_name: str,  rules: dict, rule_name: str = None):
+
+def process_file(file_name: str, rules: dict, rule_name: str = None):
     """ process file matches names by iterating all the rules
 
     this function iterating through all the rules
@@ -94,7 +99,7 @@ def process_file(file_name: str,  rules: dict, rule_name: str = None):
     if rule_name:
         rules[rule_name].run(file_name)
     else:
-        sorted_rules = sorted(rules.values(), key= lambda x: x.priority, reverse=True)
+        sorted_rules = sorted(rules.values(), key=lambda x: x.priority, reverse=True)
         for rule in rules.values():
             if rule.run(file_name):
                 return

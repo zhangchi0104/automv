@@ -10,7 +10,7 @@
             "request": "launch",
             "program": "${workspaceFolder}/main.py",
             "console": "integratedTerminal",
-            "args": ["bb.mp3"]
+            "args": ["初音未来 (初音ミク)-深海少女.flac"]
         }
     ]
 }

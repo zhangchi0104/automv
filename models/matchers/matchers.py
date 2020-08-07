@@ -1,4 +1,3 @@
-from models.conditions import Condition
 from abc import ABC, abstractmethod
 class Matcher(ABC):
     """ Matcher matches multiple conditons
