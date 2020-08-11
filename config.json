@@ -2,66 +2,17 @@
   "rules": [
     {
       "name": "tidy",
-      "matchType": "any",
-      "conditions": [
-        {
-          "type": "contains",
-          "keywords": ["tmp", "temp", "tmp/", "temp/"]
-        }, {
-          "type": "extension",
-          "extensions": ["pkg", "dmg"]
-        }
-      ],
+      "rule": "contains(tmp, temp,tmp, temp) | extensions(pkg, dmg)",
       "options": {
-        
       },
       "destination": "/Users/alexzhang/.Trash",
       "priority": 0
     },
     {
       "name": "music",
-      "matchType": "any",
-      "conditions": [
-        {
-          "type": "extension",
-          "extensions": ["mp3", "wav", "m4a"]
-        }
-      ],
+      "rule": "extensions(mp3, wav, m4a)",
       "destination": "/Users/alexzhang/Music/Music/Media/Automatically Add to Music.localized/",
       "priority": 1
-    },
-    {
-      "name": "INFS1602",
-      "matchType": "all",
-      "conditions": [
-        {
-          "type": "contains",
-          "keywords": ["INFS1602"]
-        },
-        {
-          "type": "extension",
-          "extensions": ["pdf"]
-        }
-      ],
-      "destination": "/Users/alexzhang/Google Drive/UNSW/yr3_s2/INFS1602/",
-      "priority": 2
-    }, 
-    {
-      "name": "lectures",
-      "matchType": "all",
-      "conditions": [
-        {
-          "type":"contains",
-          "keywords": ["fins", "comp", "infs"]
-        },
-        {
-          "type":"extension",
-          "extensions":["mp4"]
-        }
-      ],
-      "destination": "/Users/alexzhang/Movies/Lecture Recording/",
-      "priority": 2
-    
     }
   ]
 }

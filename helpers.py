@@ -1,8 +1,7 @@
 import json
 from models.conditions import *
-from models.matchers import *
 from models.rule import Rule
-
+from models.parser import RuleParser
 
 def load_rules(config_path: str) -> dict:
     """ load rules from json
@@ -29,26 +28,6 @@ def load_rules(config_path: str) -> dict:
     return rules
 
 
-def _parse_conditions(conditions: list) -> list:
-    """ parses conditions from json dictionary
-
-    Args:
-        conditions:
-        list of conditons from json
-    
-    Returns:
-        A list of rules parsed from json
-    """
-    res = []
-    for condition in conditions:
-        if condition['type'] == 'contains':
-            res.append(ContainsKeywordCondition(condition['keywords']))
-        elif condition['type'] == 'extension':
-            res.append(FileExtensionCondition(condition['extensions']))
-
-    return res
-
-
 def _generate_rule(rule_json: dict) -> Rule:
     """ generate rules from json
     this function first generate conditions
@@ -62,17 +41,11 @@ def _generate_rule(rule_json: dict) -> Rule:
         A Rule instance from json
         
     """
-    rule_json.setdefault('options', dict())
-    switch = {
-        "all": lambda condition: AllConditionsMatcher(condition),
-        "any": lambda condition: AnyConditionMatcher(condition)
-    }
-    matcher = None
-    conditions = _parse_conditions(rule_json['conditions'])
 
-    matcher = switch[rule_json['matchType']](conditions)
-    
-    rule = Rule(rule_json['name'], matcher, rule_json['destination'], rule_json["priority"], rule_json['options'])
+    conditions = RuleParser().parse(rule_json['rule'])
+    rule_json.setdefault('priority', 0)
+    rule_json.setdefault('options', None)
+    rule = Rule(rule_json['name'], conditions, rule_json['destination'], rule_json["priority"], rule_json['options'])
     return rule
 
 

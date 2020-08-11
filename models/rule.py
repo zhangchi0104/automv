@@ -3,8 +3,9 @@ import shutil
 import pathlib
 import os
 
-from models.matchers import Matcher
+from models.conditions import Condition
 from models.options import Options
+
 
 # the basic Rule class
 class Rule(object):
@@ -20,7 +21,7 @@ class Rule(object):
 
     """
 
-    def __init__(self, rule_name: str, matcher: Matcher, destination: str, priority: int, options: dict=None):
+    def __init__(self, rule_name: str, condition: Condition, destination: str, priority: int, options: dict = None):
         """ inits the Rule instance
 
         Args:
@@ -29,7 +30,7 @@ class Rule(object):
             destination: the target folder file will be sent
         """
         self._rule_name = rule_name
-        self._matcher: Matcher = matcher
+        self._condition: Condition = condition
         self._destination = pathlib.Path(destination)
         self._options: Options = Options(options)
         self._priority = priority
@@ -45,20 +46,19 @@ class Rule(object):
         """
         dest = self._destination
         if self._options.should_create_sub_dir:
-           dest = self._options.create_sub_dir(self._destination, file_name)
-        if self._matcher.match(file_name):
+            dest = self._options.create_sub_dir(self._destination, file_name)
+        if self._condition.check(file_name):
             dst = shutil.move(file_name, dest)
             print(f"moved {file_name} to {dst}")
             return True
 
         return False
-        
+
     @property
     def name(self):
-        val : int = 8
+        val: int = 8
         return self._rule_name
 
     @property
     def priority(self):
         return self._priority
-

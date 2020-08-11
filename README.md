@@ -20,10 +20,10 @@ python3 main.py file
 ## TODO
 
 - [X] add priorties to rule
-- [ ] be able to specify a rule
-- [ ] be able to nested rules
+- [X] be able to specify a rule
+- [X] be able to process nested rules
 - [X] be able to process multiple files
-- [ ] add more conditions and matchers 
+- [ ] add more conditions 
     - [X] added `any` matcher and `extension` condition
 - [ ] add pre moving and post moving tasks
 - [ ] add pytest 
@@ -32,6 +32,11 @@ python3 main.py file
 - [ ] allow rule groups
 
 ## Changelog
+### v0.1.0
+- added support for nested rules
+- Simplifies the rule creation
+- Using just `Conditions` to process file
+- Users can now set to create sub directory in target folder
 ###
 - now iterate through all the rules based on priority
 - updated docs
