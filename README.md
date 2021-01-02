@@ -1,3 +1,5 @@
+<!-- @format -->
+
 # automv
 
 automv is a tool to automate moving files by rules, inspired by [Spotless](https://lightpillar.com/spotless.html)
@@ -19,36 +21,42 @@ python3 main.py file
 
 ## TODO
 
-- [X] add priorties to rule
-- [X] be able to specify a rule
-- [X] be able to process nested rules
-- [X] be able to process multiple files
-- [ ] add more conditions 
-    - [X] added `any` matcher and `extension` condition
+- [x] add priorties to rule
+- [x] be able to specify a rule
+- [x] be able to process nested rules
+- [x] be able to process multiple files
+- [ ] add more conditions
+  - [x] added `any` matcher and `extension` condition
 - [ ] add pre moving and post moving tasks
-- [ ] add pytest 
+- [ ] add pytest
 - [ ] dump rules by `pickle` for better performance
-- [ ] rewrite this project in other language
 - [ ] allow rule groups
 
 ## Changelog
+
 ### v0.1.0
+
 - added support for nested rules
 - Simplifies the rule creation
 - Using just `Conditions` to process file
 - Users can now set to create sub directory in target folder
+
 ###
+
 - now iterate through all the rules based on priority
 - updated docs
 - it can process multiple files
 
-### v0.0.1 
-- Project created 
+### v0.0.1
+
+- Project created
 
 ## Contributing
+
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 Please make sure to update tests as appropriate.
 
 ## License
+
 [MIT](https://choosealicense.com/licenses/mit/)

@@ -1,7 +1,7 @@
 #!/usr/local/bin/python3
-from helpers import load_rules
+from smartmv.helpers import load_rules
 from argparse import ArgumentParser
-from models.rule import Rule
+from smartmv.models.rule import Rule
 from typing import List, TypedDict
 
 
@@ -12,13 +12,14 @@ class ParsedArgs(TypedDict):
 class App(object):
     def __init__(self, rules: List[Rule]):
         self._arg_parser = self._init_argument_parser()
-        self._rules = rules
+        self._rules = rules 
 
     def _init_argument_parser(self) -> ArgumentParser:
         ap = ArgumentParser()
         ap.add_argument("files", metavar="file_name",
                     type=str, nargs='+', help="the name of the files")
         ap.add_argument("--rule", "-r", required=False, help="the specified rule", type=str)
+        
         return ap
 
     def run(self):
@@ -52,7 +53,7 @@ class App(object):
         if rule_name:
             rules[rule_name].run(file_name)
         else:
-            sorted_rules = sorted(self.rules.values(), key=lambda x: x.priority, reverse=True)
+            sorted_rules = sorted(self._rules.values(), key=lambda x: x.priority, reverse=True)
             for rule in sorted_rules:
                 if rule.run(file_name):
                     return
